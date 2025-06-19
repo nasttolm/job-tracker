@@ -15,6 +15,12 @@ class UserOut(BaseModel):
     class Config:
         orm_mode = True  # Enables compatibility with ORM objects like SQLAlchemy models
 
+# Schema for login request
+class UserLogin(BaseModel):
+    email: EmailStr  # The user's email address
+    password: str    # The user's password
+
+
 # Schema for creating a new vacancy (input)
 class VacancyCreate(BaseModel):
     title: str  # Job title
