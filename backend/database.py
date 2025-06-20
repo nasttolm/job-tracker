@@ -1,4 +1,3 @@
-
 from decouple import config
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -21,3 +20,13 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 # Create a base class for your ORM models to inherit from
 # All models will extend this class to get ORM functionality
 Base = declarative_base()
+
+
+# Dependency to get a database session
+# This function ensures the session is opened and closed correctly
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

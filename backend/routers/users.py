@@ -3,12 +3,12 @@ from decouple import config
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
-
-from database import SessionLocal
+from database import get_db
 import models, schemas
 from fastapi.security import OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from datetime import timedelta, datetime
+
 
 
 # Create a router instance for user-related endpoints
@@ -22,15 +22,6 @@ SECRET_KEY = config("SECRET_KEY_JWT")
 ALGORITHM = config("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = config("ACCESS_TOKEN_EXPIRE_MINUTES", cast=int)
 
-
-# Dependency to get a database session
-# This function ensures the session is opened and closed correctly
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 # Endpoint to register a new user
 @router.post("/register", response_model=schemas.UserOut)
@@ -75,3 +66,4 @@ def login(user_credentials: schemas.UserLogin, db: Session = Depends(get_db)):
 
     access_token = create_access_token(data={"sub": user_credentials.email})
     return {"access_token": access_token, "token_type": "bearer"}
+
