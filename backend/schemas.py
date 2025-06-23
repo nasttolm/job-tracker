@@ -33,7 +33,7 @@ class VacancyOut(BaseModel):
     title: str  # Job title
     company: str  # Company name
     status: str  # Current application status
-    date_created: datetime  # Timestamp when the vacancy was created
+    date_applied: datetime  # Timestamp when the vacancy was created
     user_id: int  # ID of the user who created the vacancy (useful for admin views)
 
     class Config:
