@@ -21,7 +21,7 @@ def create_vacancy(
     """
     Create a new vacancy and link it to the current user.
     """
-    new_vacancy = models.Vacancy(user_id=current_user.id, **vacancy.dict())
+    new_vacancy = models.Vacancy(user_id=current_user.id, **vacancy.model_dump())
     db.add(new_vacancy)
     db.commit()
     db.refresh(new_vacancy)
@@ -97,7 +97,7 @@ def update_vacancy(
     if not vacancy:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Vacancy not found")
 
-    for key, value in updated_data.dict().items():
+    for key, value in updated_data.model_dump().items():
         setattr(vacancy, key, value)
 
     db.commit()

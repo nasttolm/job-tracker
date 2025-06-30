@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 # Schema for creating a new user (input)
 class UserCreate(BaseModel):
@@ -12,8 +12,7 @@ class UserOut(BaseModel):
     email: EmailStr  # The user's email address
     date_created: datetime  # Timestamp when the user was created
 
-    class Config:
-        orm_mode = True  # Enables compatibility with ORM objects like SQLAlchemy models
+    model_config = ConfigDict(from_attributes=True)
 
 # Schema for login request
 class UserLogin(BaseModel):
@@ -36,5 +35,4 @@ class VacancyOut(BaseModel):
     date_applied: datetime  # Timestamp when the vacancy was created
     user_id: int  # ID of the user who created the vacancy (useful for admin views)
 
-    class Config:
-        orm_mode = True  # Enables compatibility with ORM objects like SQLAlchemy models
+    model_config = ConfigDict(from_attributes=True)
