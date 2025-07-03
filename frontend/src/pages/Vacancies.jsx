@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 /**
  * This page fetches and displays the list of vacancies
@@ -9,6 +10,8 @@ export default function Vacancies() {
   const [vacancies, setVacancies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   // Fetch vacancies when component mounts
   useEffect(() => {
@@ -32,6 +35,9 @@ export default function Vacancies() {
   return (
     <div>
       <h2>My Vacancies</h2>
+      <button onClick={() => navigate("/vacancies/add")}>
+        ➕ Add Vacancy
+      </button>
       {vacancies.length === 0 ? (
         <p>No vacancies found.</p>
       ) : (

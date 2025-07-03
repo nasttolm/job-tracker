@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Vacancies from "./pages/Vacancies";
+import AddVacancy from "./pages/AddVacancy";
 
 function App() {
   return (
@@ -20,6 +21,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Vacancies />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vacancies/add"
+            element={
+              <ProtectedRoute>
+                <AddVacancy />
               </ProtectedRoute>
             }
           />
