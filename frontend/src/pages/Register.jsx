@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api'; // axios instance
+import api from '../services/api';
+import styles from '../components/Form.module.css';
+import Layout from "../components/Layout";
 
 export default function Register() {
   // Local state for form inputs and error message
@@ -30,31 +32,35 @@ export default function Register() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <Layout>
+        <h2>Register</h2>
 
-      <form onSubmit={handleRegister}>
-        {/* Username input */}
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /><br />
+        <form onSubmit={handleRegister}>
+            {/* Username input */}
+            <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+            /><br />
 
-        {/* Password input */}
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /><br />
+            {/* Password input */}
+            <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+            /><br />
 
-        {/* Submit button */}
-        <button type="submit">Register</button>
-      </form>
+            {/* Submit button */}
+            <button type="submit" className={styles.button}>Register</button>
+        </form>
 
-      {/* Show error message if needed */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {/* Show error message if needed */}
+        {error && <p className={styles.error}>{error}</p>}
+      </Layout>
     </div>
   );
 }

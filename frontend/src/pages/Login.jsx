@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // to redirect after login
-import { useAuth } from '../context/AuthContext'; // custom hook to access login()
-import api from '../services/api'; // our axios instance
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
+import styles from '../components/Form.module.css';
+import Layout from "../components/Layout";
 
 export default function Login() {
   // Local state for form inputs and error message
@@ -38,32 +40,36 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className={styles.container}>
+      <Layout>
+        <h2>Login</h2>
 
-      <form onSubmit={handleSubmit}>
-        {/* Username input */}
-        <input
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /><br />
+        <form onSubmit={handleSubmit}>
+          {/* Username input */}
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+          />
 
-        {/* Password input */}
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /><br />
+          {/* Password input */}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+          />
 
-        {/* Submit button */}
-        <button type="submit">Login</button>
-      </form>
+          {/* Submit button */}
+          <button type="submit" className={styles.button}>Login</button>
+        </form>
 
-      {/* Show error message if needed */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
+      </Layout>
     </div>
   );
 }
+
