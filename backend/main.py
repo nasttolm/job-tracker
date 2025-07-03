@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import schemas
 from auth import get_current_user
 from database import Base, engine
@@ -9,6 +10,17 @@ from routers import users, vacancies
 
 # Create an instance of the FastAPI application
 app = FastAPI()
+
+# Enable CORS to allow frontend (on a different port) to access the backend API.
+# This is necessary for browser-based clients like Vite/React to interact with FastAPI during development.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # React dev server origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Connect routes from users.py
 app.include_router(users.router)
