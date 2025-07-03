@@ -1,18 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Vacancies from "./pages/Vacancies";
 import AddVacancy from "./pages/AddVacancy";
 import EditVacancy from './pages/EditVacancy';
+import Navbar from './components/Navbar';
+
 
 function App() {
+  const { token } = useAuth();
   return (
     <AuthProvider>
       <BrowserRouter>
+        {token && <Navbar />} {/* Navbar only if logged in */}
         <Routes>
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
