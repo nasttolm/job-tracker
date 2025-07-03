@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ProtectedRoute from "./components/ProtectedRoute";
+import Vacancies from "./pages/Vacancies";
 
 function App() {
   return (
@@ -13,7 +15,14 @@ function App() {
           {/* Public routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
+          <Route
+            path="/vacancies"
+            element={
+              <ProtectedRoute>
+                <Vacancies />
+              </ProtectedRoute>
+            }
+          />
           {/* Redirect home to /login */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

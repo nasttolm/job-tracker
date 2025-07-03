@@ -29,8 +29,8 @@ export default function Login() {
       // Save token to context + localStorage
       login(token);
 
-      // Redirect to dashboard
-      navigate('/dashboard');
+      // Redirect to vacancies
+      navigate('/vacancies');
     } catch (err) {
       // Show error if login fails
       setError('Invalid credentials');
