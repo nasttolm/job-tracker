@@ -45,6 +45,9 @@ export default function Vacancies() {
           {vacancies.map((vacancy) => (
             <li key={vacancy.id}>
               <strong>{vacancy.title}</strong> at {vacancy.company} — {vacancy.status}
+              <button onClick={() => navigate(`/vacancies/edit/${vacancy.id}`)}>
+                ✏️ Edit
+              </button>
             </li>
           ))}
         </ul>

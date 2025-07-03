@@ -7,6 +7,7 @@ import Register from './pages/Register';
 import ProtectedRoute from "./components/ProtectedRoute";
 import Vacancies from "./pages/Vacancies";
 import AddVacancy from "./pages/AddVacancy";
+import EditVacancy from './pages/EditVacancy';
 
 function App() {
   return (
@@ -29,6 +30,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <AddVacancy />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/vacancies/edit/:id"
+            element={
+              <ProtectedRoute>
+                <EditVacancy />
               </ProtectedRoute>
             }
           />
