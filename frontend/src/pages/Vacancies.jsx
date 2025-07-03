@@ -29,6 +29,20 @@ export default function Vacancies() {
     fetchVacancies();
   }, []);
 
+  // Handle deleting a vacancy
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this vacancy?");
+    if (!confirmDelete) return;
+
+    try {
+      await api.delete(`/vacancies/${id}`);
+      // Remove deleted vacancy from the list
+      setVacancies((prev) => prev.filter((vacancy) => vacancy.id !== id));
+    } catch (err) {
+      setError("Failed to delete vacancy.");
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
@@ -45,8 +59,15 @@ export default function Vacancies() {
           {vacancies.map((vacancy) => (
             <li key={vacancy.id}>
               <strong>{vacancy.title}</strong> at {vacancy.company} — {vacancy.status}
+              
+              {/* Navigate to the Edit form */}
               <button onClick={() => navigate(`/vacancies/edit/${vacancy.id}`)}>
                 ✏️ Edit
+              </button>{" "}
+
+              {/* Trigger delete function */}
+              <button onClick={() => handleDelete(vacancy.id)}>
+                💥 Delete
               </button>
             </li>
           ))}
