@@ -15,7 +15,7 @@ function App() {
   const { token } = useAuth();
   return (
     <BrowserRouter>
-      {token && <Navbar />} {/* Navbar only if logged in */}
+      <Navbar />
       <Routes>
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
