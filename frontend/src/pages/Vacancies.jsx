@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
+import VacancyCard from "../components/VacancyCard";
+import styles from "./Pages.module.css";
 
 /**
  * This page fetches and displays the list of vacancies
@@ -47,29 +49,23 @@ export default function Vacancies() {
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
-    <div>
-      <h2>My Vacancies</h2>
-      <button onClick={() => navigate("/vacancies/add")}>
-        ➕ Add Vacancy
-      </button>
+    <div className={styles.container}> 
+      <div className={styles.header}> 
+          <h2>My Vacancies</h2>
+          <button className={styles.addButton} onClick={() => navigate("/vacancies/add")}> {/* ← ДОБАВИТЬ класс */}
+          ➕ Add Vacancy
+          </button>
+      </div>
       {vacancies.length === 0 ? (
-        <p>No vacancies found.</p>
+          <p>No vacancies found.</p>
       ) : (
-        <ul>
+        <ul className={styles.list}>
           {vacancies.map((vacancy) => (
-            <li key={vacancy.id}>
-              <strong>{vacancy.title}</strong> at {vacancy.company} — {vacancy.status}
-              
-              {/* Navigate to the Edit form */}
-              <button onClick={() => navigate(`/vacancies/edit/${vacancy.id}`)}>
-                ✏️ Edit
-              </button>{" "}
-
-              {/* Trigger delete function */}
-              <button onClick={() => handleDelete(vacancy.id)}>
-                💥 Delete
-              </button>
-            </li>
+              <VacancyCard
+                  key={vacancy.id}
+                  vacancy={vacancy}
+                  onDelete={handleDelete}
+              />
           ))}
         </ul>
       )}

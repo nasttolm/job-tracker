@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import styles from '../components/Form.module.css';
-import Layout from "../components/Layout";
 
 export default function Login() {
   // Local state for form inputs and error message
@@ -41,34 +40,31 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <Layout>
-        <h2>Login</h2>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        {/* Username input */}
+        <input
+          type="text"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={styles.input}
+        />
 
-        <form onSubmit={handleSubmit}>
-          {/* Username input */}
-          <input
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
-          />
+        {/* Password input */}
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className={styles.input}
+        />
 
-          {/* Password input */}
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={styles.input}
-          />
+        {/* Submit button */}
+        <button type="submit" className={styles.button}>Login</button>
+      </form>
 
-          {/* Submit button */}
-          <button type="submit" className={styles.button}>Login</button>
-        </form>
-
-        {error && <p className={styles.error}>{error}</p>}
-      </Layout>
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   );
 }

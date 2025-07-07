@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import styles from "./Pages.module.css";
 
 /**
  * Page to edit an existing vacancy using PUT /vacancies/:id
@@ -43,11 +44,11 @@ export default function EditVacancy() {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>Edit Vacancy</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.formGroup}>
           <label>Job Title:</label>
           <input
             type="text"
@@ -56,7 +57,7 @@ export default function EditVacancy() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label>Company:</label>
           <input
             type="text"
@@ -65,7 +66,7 @@ export default function EditVacancy() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label>Status:</label>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="applied">Applied</option>

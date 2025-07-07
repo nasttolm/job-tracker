@@ -1,34 +1,29 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext"
+import styles from "./Navbar.module.css"
 
 export default function Navbar() {
-  const { token, logout } = useAuth();
-  const navigate = useNavigate();
+  const { token, logout } = useAuth()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout(); // Clear token and user
-    navigate("/login"); // Redirect to login page
-  };
-
-  if (!token) return null;
+    logout() // Clear token and user
+    navigate("/login") // Redirect to login page
+  }
 
   return (
-    <nav style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-      {/* Always visible */}
-      <Link to="/vacancies" style={{ marginRight: "1rem" }}>
-        🏠 Vacancies
-      </Link>
-      <Link to="/vacancies/add" style={{ marginRight: "1rem" }}>
-        ➕ Add
-      </Link>
-
-      {/* Show logout only if logged in */}
-      {token && (
-        <button onClick={handleLogout} style={{ float: "right" }}>
+    <nav className={styles.navbar}>
+      <div className={styles.navLinks}>
+        <Link to="/vacancies" className={styles.navLink}>
+          🏠 Vacancies
+        </Link>
+        <Link to="/vacancies/add" className={styles.navLink}>
+          ➕ Add
+        </Link>
+        <button onClick={handleLogout} className={styles.logoutButton}>
           🚪 Logout
         </button>
-      )}
+      </div>
     </nav>
-  );
+  )
 }

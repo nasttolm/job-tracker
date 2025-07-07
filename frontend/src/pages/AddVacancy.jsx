@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import styles from "./Pages.module.css";
 
 /**
  * Page with a form to add a new vacancy (title, company, status).
@@ -31,11 +32,11 @@ export default function AddVacancy() {
   };
 
   return (
-    <div>
+    <div className={styles.formContainer}>
       <h2>Add New Vacancy</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.formGroup}>
           <label>Job Title:</label>
           <input
             type="text"
@@ -44,7 +45,7 @@ export default function AddVacancy() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label>Company:</label>
           <input
             type="text"
@@ -53,7 +54,7 @@ export default function AddVacancy() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formGroup}>
           <label>Status:</label>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="applied">Applied</option>

@@ -3,45 +3,51 @@
   margin: 4rem auto;
   padding: 2rem;
   border-radius: 12px;
-  background-color: #fdfcfb;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  font-family: 'Inter', sans-serif;
+  background-color: #fff8e1;
+  box-shadow: 0 4px 12px rgba(255, 112, 67, 0.15);
+  font-family: "Inter", sans-serif;
 }
 
-h2 {
+.container h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #2c3e50;
+  color: #5d4037;
 }
 
-input {
+.input {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffcc80;
   font-size: 1rem;
   box-sizing: border-box;
+  background-color: #fffde7;
 }
 
-button {
+.input:focus {
+  border-color: #ff7043;
+  outline: none;
+}
+
+.button {
   width: 100%;
   padding: 0.75rem;
   border: none;
   border-radius: 8px;
-  background-color: #4caf50;
+  background-color: #ff7043;
   color: white;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #45a049;
+.button:hover {
+  background-color: #f4511e;
 }
 
 .error {
-  color: #d32f2f;
+  color: #ef5350;
   text-align: center;
   margin-top: 1rem;
 }

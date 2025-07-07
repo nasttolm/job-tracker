@@ -14,42 +14,40 @@ import Navbar from './components/Navbar';
 function App() {
   const { token } = useAuth();
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        {token && <Navbar />} {/* Navbar only if logged in */}
-        <Routes>
-          {/* Public routes */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/vacancies"
-            element={
-              <ProtectedRoute>
-                <Vacancies />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/vacancies/add"
-            element={
-              <ProtectedRoute>
-                <AddVacancy />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/vacancies/edit/:id"
-            element={
-              <ProtectedRoute>
-                <EditVacancy />
-              </ProtectedRoute>
-            }
-          />
-          {/* Redirect home to /login */}
-          <Route path="/" element={<Navigate to="/login" />} />
-        </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      {token && <Navbar />} {/* Navbar only if logged in */}
+      <Routes>
+        {/* Public routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/vacancies"
+          element={
+            <ProtectedRoute>
+              <Vacancies />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vacancies/add"
+          element={
+            <ProtectedRoute>
+              <AddVacancy />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/vacancies/edit/:id"
+          element={
+            <ProtectedRoute>
+              <EditVacancy />
+            </ProtectedRoute>
+          }
+        />
+        {/* Redirect home to /login */}
+        <Route path="/" element={<Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
